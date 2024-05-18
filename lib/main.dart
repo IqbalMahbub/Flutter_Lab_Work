@@ -17,19 +17,23 @@ class MyApp extends StatelessWidget{
   }
 
 }
-var listItem = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December"
+final List<Map<String, dynamic>> listItem = [
+  {'name': 'Cloud Functions', 'icon': Icons.cloud},
+  {'name': 'App Engine', 'icon': Icons.build},
+  {'name': 'Kubernetes Engine', 'icon': Icons.memory},
+  {'name': 'Compute Engine', 'icon': Icons.computer},
+  {'name': 'Bare Metal', 'icon': Icons.settings_input_hdmi},
+  {'name': 'Preemptible VMs', 'icon': Icons.schedule},
+  {'name': 'Shielded VMs', 'icon': Icons.security},
+  {'name': 'Sole-tenet Nodes', 'icon': Icons.person},
+  {'name': 'VMWare Engine', 'icon': Icons.storage},
+  {'name': 'Cloud Firestore', 'icon': Icons.book},
+  {'name': 'Cloud Storage', 'icon': Icons.storage},
+  {'name': 'Persistent Disk', 'icon': Icons.sd_storage},
+  {'name': 'Local SSD', 'icon': Icons.sd_card},
+  {'name': 'Cloud Bigtable', 'icon': Icons.table_chart},
+  {'name': 'Cloud Memorystore', 'icon': Icons.memory},
+  {'name': 'Cloud Spanner', 'icon': Icons.storage},
 ];
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,32 +47,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(leading: const Icon(Icons.home),title: const Text('Home'),
-        backgroundColor: Colors.pink.shade100,),
+        backgroundColor: Colors.pink.shade100, actions: [
+          Icon(Icons.share)
+        ],),
       body: ListView.builder(
           itemCount: listItem.length,
           itemBuilder: (context,index){
             return InkWell(
               onTap: (){
-                int numberOfMunth=index+1;
+                int numberOfMonth=index+1;
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => DetailsActivity
-                    ( month: listItem[index], nth: numberOfMunth.toString(),)),
+                    ( month: listItem[index]['name'], nth: numberOfMonth
+                      .toString(),)),
                 );
               },
               child:ListTile(
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero
                   ,side:BorderSide(color: Colors.grey),),
-                leading: Icon(Icons.calendar_month),
-                title: Text(listItem[index]),) ,
+                leading:  Icon(listItem[index]['icon']),
+                title: Text(listItem[index]['name']),) ,
               );
 
           }
       ),
     );
-  viewDetails(){
-
-  }
 
   }
 }
