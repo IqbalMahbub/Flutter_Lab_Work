@@ -15,8 +15,15 @@ class MyApp extends StatelessWidget{
       home: const HomeScreen(),
     );
   }
-
 }
+const title='Google Cloud';
+AppBarLeading(){
+  return const Icon(Icons.menu);
+}
+actionBar(){
+  return Icon(Icons.share);
+}
+
 final List<Map<String, dynamic>> listItem = [
   {'name': 'Cloud Functions', 'icon': Icons.cloud},
   {'name': 'App Engine', 'icon': Icons.build},
@@ -35,6 +42,10 @@ final List<Map<String, dynamic>> listItem = [
   {'name': 'Cloud Memorystore', 'icon': Icons.memory},
   {'name': 'Cloud Spanner', 'icon': Icons.storage},
 ];
+mySnackBar(context,msg,){
+  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+}
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -46,22 +57,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: const Icon(Icons.home),title: const Text('Home'),
-        backgroundColor: Colors.pink.shade100, actions: [
-          Icon(Icons.share)
+      appBar: AppBar(leading:  AppBarLeading(),title: const Text
+        (title),
+        backgroundColor: Colors.pink.shade100,
+        actions: [
+          actionBar(),
         ],),
       body: ListView.builder(
           itemCount: listItem.length,
           itemBuilder: (context,index){
             return InkWell(
-              onTap: (){
+
+              onDoubleTap: (){
                 int numberOfMonth=index+1;
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => DetailsActivity
-                    ( month: listItem[index]['name'], nth: numberOfMonth
-                      .toString(),)),
+                  MaterialPageRoute(builder: (context) => DetailsActivity(),
+                  )
                 );
+              },
+              onTap: (){
+                  mySnackBar(context,  listItem[index]['name']);
               },
               child:ListTile(
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero
