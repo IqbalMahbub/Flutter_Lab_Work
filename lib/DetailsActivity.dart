@@ -42,13 +42,39 @@ class DetailsActivity extends StatelessWidget {
                          child: Text('Information',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
                        ),
                        Tab(
-                         icon: Icon(Icons.home,color: Colors.grey,),
-                         child: Text('Overview',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
+                         icon: Icon(Icons.info,color: Colors.grey,),
+                         child: Text('Other',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red),),
                        )
                    ],
+
                    ),
+
           
-               )
+               ),
+               body: const TabBarView(
+                 children: [
+                   SizedBox(
+                     child: Center(
+                       child: Text('This is overview details'),
+                     ),
+                   ),
+                   SizedBox(
+                     child: Center(
+                       child: Text('This is docs details'),
+                     ),
+                   ),
+                   SizedBox(
+                     child: Center(
+                       child: Text('This is Information details'),
+                     ),
+                   ),
+                   SizedBox(
+                     child: Center(
+                       child: Text('This is other details'),
+                     ),
+                   ),
+                 ],
+               ),
             )
           )
         );

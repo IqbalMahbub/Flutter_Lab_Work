@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           itemBuilder: (context,index){
             return InkWell(
 
-              onDoubleTap: (){
+              onTap: (){
                 int numberOfMonth=index+1;
                 Navigator.push(
                     context,
@@ -76,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                 );
               },
-              onTap: (){
+            onDoubleTap: (){
                 mySnackBar(context,  listItem[index]['name']);
               },
               child:ListTile(
@@ -87,10 +87,13 @@ class _HomeScreenState extends State<HomeScreen> {
             );
 
           }
-      ),
+      ), 
+      drawer: myDrower(),
     );
 
   }
+
+  myDrower() {}
 }
 
 
