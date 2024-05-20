@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lab_work/main.dart';
 
+import 'ActionBar.dart';
+import 'AppBarLeading.dart';
+
 class DetailsActivity extends StatelessWidget {
   static const details ='It is details page';
   @override

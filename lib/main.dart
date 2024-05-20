@@ -1,5 +1,11 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:lab_work/DetailsActivity.dart';
+
+import 'ActionBar.dart';
+import 'AppBarLeading.dart';
+import 'mySnackBar.dart';
 
 void main(){
   runApp(const MyApp());
@@ -17,12 +23,8 @@ class MyApp extends StatelessWidget{
   }
 }
 const title='Google Cloud';
-AppBarLeading(){
-  return const Icon(Icons.menu);
-}
-actionBar(){
-  return Icon(Icons.share);
-}
+
+
 
 final List<Map<String, dynamic>> listItem = [
   {'name': 'Cloud Functions', 'icon': Icons.cloud},
@@ -42,9 +44,7 @@ final List<Map<String, dynamic>> listItem = [
   {'name': 'Cloud Memorystore', 'icon': Icons.memory},
   {'name': 'Cloud Spanner', 'icon': Icons.storage},
 ];
-mySnackBar(context,msg,){
-  return ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
-}
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,20 +71,20 @@ class _HomeScreenState extends State<HomeScreen> {
               onDoubleTap: (){
                 int numberOfMonth=index+1;
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => DetailsActivity(),
-                  )
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailsActivity(),
+                    )
                 );
               },
               onTap: (){
-                  mySnackBar(context,  listItem[index]['name']);
+                mySnackBar(context,  listItem[index]['name']);
               },
               child:ListTile(
                 shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero
                   ,side:BorderSide(color: Colors.grey),),
                 leading:  Icon(listItem[index]['icon']),
                 title: Text(listItem[index]['name']),) ,
-              );
+            );
 
           }
       ),
