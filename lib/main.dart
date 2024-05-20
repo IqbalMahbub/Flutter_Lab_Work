@@ -5,6 +5,7 @@ import 'package:lab_work/DetailsActivity.dart';
 
 import 'ActionBar.dart';
 import 'AppBarLeading.dart';
+import 'myDrower.dart';
 import 'mySnackBar.dart';
 
 void main(){
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading:  AppBarLeading(),title: const Text
+      appBar: AppBar(leading: AppBarLeading(), title: const Text
         (title),
         backgroundColor: Colors.pink.shade100,
         actions: [
@@ -65,35 +66,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ],),
       body: ListView.builder(
           itemCount: listItem.length,
-          itemBuilder: (context,index){
+          itemBuilder: (context, index) {
             return InkWell(
 
-              onTap: (){
-                int numberOfMonth=index+1;
+              onTap: () {
+                int numberOfMonth = index + 1;
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => DetailsActivity(),
                     )
                 );
               },
-            onDoubleTap: (){
-                mySnackBar(context,  listItem[index]['name']);
+              onDoubleTap: () {
+                mySnackBar(context, listItem[index]['name']);
               },
-              child:ListTile(
-                shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero
-                  ,side:BorderSide(color: Colors.grey),),
-                leading:  Icon(listItem[index]['icon']),
-                title: Text(listItem[index]['name']),) ,
+              child: ListTile(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.zero
+                  , side: BorderSide(color: Colors.grey),),
+                leading: Icon(listItem[index]['icon']),
+                title: Text(listItem[index]['name']),),
             );
-
           }
-      ), 
-      drawer: myDrower(),
+      ),
+      drawer: myDrawer(),
     );
-
   }
-
-  myDrower() {}
 }
-
 
